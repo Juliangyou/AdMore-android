@@ -14,7 +14,7 @@
 
 //aar导入如图（参考项目中imgs下aarlibs.png）
 
-![](/Users/C/Library/Application%20Support/marktext/images/2023-06-30-09-33-24-image.png)
+![aar引入](imgs/aarlibs.png)
 
 gradle配置如图
 
