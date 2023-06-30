@@ -1,0 +1,33 @@
+apply plugin: 'com.android.library'
+android {
+    compileSdkVersion rootProject.ext.android.extCompileSdkVersion
+    defaultConfig {
+
+        minSdkVersion rootProject.ext.android.extMinSdkVersion
+        targetSdkVersion rootProject.ext.android.extTargetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+    sourceSets {
+        main {
+            manifest.srcFile 'src/main/AndroidManifest.xml'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation rootProject.ext.dependencies.extAppcompatV7
+    implementation rootProject.ext.dependencies.extConstraintLayout
+    api rootProject.ext.dependencies.extRxJava
+    api rootProject.ext.dependencies.extRxAndroid
+    testImplementation rootProject.ext.dependencies.extTestJunit
+    androidTestImplementation rootProject.ext.dependencies.extAndroidTestRunner
+    androidTestImplementation rootProject.ext.dependencies.extAndroidTestEspresso
+}

@@ -1,0 +1,82 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.android.extCompileSdkVersion
+    defaultConfig {
+        applicationId "com.admore.demo"
+        minSdkVersion rootProject.ext.android.extMinSdkVersion
+        targetSdkVersion rootProject.ext.android.extTargetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+
+        ndk {
+            //设置支持的SO库架构
+            abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
+    }
+    //定义维度
+    //付费版本(free,vip) 发布渠道(...)
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "apk_${flavorName}_v${variant.versionName}_${buildTime()}.apk"
+        }
+    }
+    signingConfigs {
+        release {
+            //签名路径
+            storeFile file("/Users/zcy/AndroidStudioProjects/Demo/q0pwzp/combAppApks/combKey.jks")
+            storePassword "combpass"
+            keyAlias "comkey"
+            keyPassword "combkey"
+        }
+    }
+    buildTypes {
+        release {
+//            shrinkResources true
+            zipAlignEnabled true
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+            dirs project(':libAdmore').file('libs')
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+}
+
+
+def buildTime() {
+    def date = new Date()
+    def formattedDate = date.format("yyyyMMdd")
+    return formattedDate
+}
+
+dependencies {
+//    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+    implementation rootProject.ext.dependencies.extAppcompatV7
+    implementation rootProject.ext.dependencies.extAppcompatRecyclerV7
+    implementation rootProject.ext.dependencies.extBaseRecycler
+    implementation rootProject.ext.dependencies.extRxPermission
+    implementation rootProject.ext.dependencies.extAppMaterial
+    implementation rootProject.ext.dependencies.extMultidex
+    implementation rootProject.ext.dependencies.extConstraintLayout
+
+
+
+    testImplementation rootProject.ext.dependencies.extTestJunit
+    androidTestImplementation rootProject.ext.dependencies.extAndroidTestRunner
+    androidTestImplementation rootProject.ext.dependencies.extAndroidTestEspresso
+    implementation project(':base')
+    implementation project(':libAdmore')
+}
+
+

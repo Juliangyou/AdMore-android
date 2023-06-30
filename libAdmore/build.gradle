@@ -1,0 +1,57 @@
+apply plugin: 'com.android.library'
+android {
+    compileSdkVersion rootProject.ext.android.extCompileSdkVersion
+    defaultConfig {
+
+        minSdkVersion rootProject.ext.android.extMinSdkVersion
+        targetSdkVersion rootProject.ext.android.extTargetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+    sourceSets {
+        main {
+            manifest.srcFile 'src/main/AndroidManifest.xml'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+}
+
+dependencies {
+
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    implementation "com.pangle.cn:mediation-sdk:5.3.5.1"//穿山甲
+    implementation "com.pangle.cn:mediation-ks-adapter:3.3.44.1"//ks adapter
+    implementation "com.pangle.cn:mediation-baidu-adapter:9.29.1"//baidu adapter
+    implementation "com.pangle.cn:mediation-gdt-adapter:4.530.1400.1" //gdt adapter
+    implementation "com.pangle.cn:mediation-sigmob-adapter:4.11.0.1"//sigmob adapter
+
+    api(name: 'AdMoreSdkLib-V2.0', ext: 'aar')
+    //Baidu
+    implementation(name: 'Baidu_MobAds_SDK_v9.29', ext: 'aar')
+//    //GDT 优量汇
+    implementation(name: 'GDTSDK.unionNormal.4.530.1400', ext: 'aar')
+//    //ks 快手
+    implementation(name: 'kssdk-ad-3.3.44', ext: 'aar')
+//    //sigmob
+    implementation(name: 'windAd-4.11.0', ext: 'aar')
+    implementation(name: 'windAd-common-1.4.4', ext: 'aar')
+
+    testImplementation rootProject.ext.dependencies.extTestJunit
+    androidTestImplementation rootProject.ext.dependencies.extAndroidTestRunner
+    androidTestImplementation rootProject.ext.dependencies.extAndroidTestEspresso
+}
