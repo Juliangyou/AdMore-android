@@ -50,7 +50,7 @@ dependencies{
     implementation "com.pangle.cn:mediation-gdt-adapter:4.530.1400.1" //gdt adapter
     implementation "com.pangle.cn:mediation-sigmob-adapter:4.11.0.1"//sigmob adapter
 
-    api(name: 'AdMoreSdkLib-V2.0', ext: 'aar')
+    api(name: 'AdMoreSdkLib-V1.0', ext: 'aar')
     //Baidu
     implementation(name: 'Baidu_MobAds_SDK_v9.29', ext: 'aar')
 //    //GDT 优量汇
@@ -77,7 +77,7 @@ implementation "com.pangle.cn:mediation-baidu-adapter:9.29.1"//baidu adapter
 implementation "com.pangle.cn:mediation-gdt-adapter:4.530.1400.1" //gdt adapter
 implementation "com.pangle.cn:mediation-sigmob-adapter:4.11.0.1"//sigmob adapter
 
-implementation(name: 'AdMoreSdkLib', ext: 'aar')
+api(name: 'AdMoreSdkLib-V1.0', ext: 'aar')
 //Baidu
 implementation(name: 'Baidu_MobAds_SDK_v9.29', ext: 'aar')
 //GDT 优量汇
