@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -28,7 +30,6 @@ import io.reactivex.functions.Consumer;
 
 public class SplashActivity extends BaseActivity {
 
-    private RxPermissions rxPermissions;
     private AdMoreSplashAd splashAd;
     private FrameLayout adMore;
 
@@ -46,29 +47,11 @@ public class SplashActivity extends BaseActivity {
     @Override
     public void initView() {
         adMore = findViewById(R.id.ad_main);
+        ((TextView)findViewById(R.id.tt)).setText("广告splash");
     }
 
     @Override
     public void initData() {
-        rxPermissions = new RxPermissions(this);
-        Disposable subscribe = rxPermissions.requestEach(Manifest.permission.INTERNET,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.READ_EXTERNAL_STORAGE).
-                subscribe(new Consumer<Permission>() {
-                    @Override
-                    public void accept(Permission permission) throws Exception {
-                        if (permission.granted) {
-                            gotoNext();
-                        } else if (permission.shouldShowRequestPermissionRationale) {
-
-                        } else {
-
-                        }
-                    }
-                });
-    }
-
-    private void gotoNext() {
         startSplashAd();
     }
 
@@ -91,6 +74,7 @@ public class SplashActivity extends BaseActivity {
             @Override
             public void onError(int code, String message) {
                 Log.d(TAG, "onError " + message);
+                Toast.makeText(getApplicationContext(), "广告加载失败！" + message, Toast.LENGTH_SHORT).show();
 
             }
 
@@ -104,6 +88,7 @@ public class SplashActivity extends BaseActivity {
             @Override
             public void onTimeout() {
                 Log.d(TAG, "onTimeOut ");
+                Toast.makeText(getApplicationContext(), "广告加载超时！" , Toast.LENGTH_SHORT).show();
                 gotoMain();
             }
         });
@@ -122,6 +107,7 @@ public class SplashActivity extends BaseActivity {
             @Override
             public void onAdShow(View var1, int var2) {
                 Log.d(TAG, "onAdClicked " + var2);
+                Toast.makeText(getApplicationContext(), "广告加载成功 ！" , Toast.LENGTH_SHORT).show();
 
             }
 

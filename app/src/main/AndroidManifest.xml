@@ -42,9 +42,6 @@
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <!-- 是否作为launcher-->
-                <!-- <category android:name="android.intent.category.HOME" />-->
-                <!-- <category android:name="android.intent.category.DEFAULT" />-->
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

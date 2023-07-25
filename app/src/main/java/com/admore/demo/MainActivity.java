@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.admore.demo.adapter.MenuBean;
+import com.admore.demo.splash.SplashActivity;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.zcy.base.ui.BaseActivity;
 import com.admore.demo.adapter.IteamAdapter;
@@ -55,7 +56,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 if (TextUtils.equals("splash", itemDatas.get(position).getName())) {
-                    startActivity(new Intent(MainActivity.this, WelcomeActivity.class));
+                    startActivity(new Intent(MainActivity.this, SplashActivity.class));
                     return;
                 }
                 Intent intent = new Intent();
