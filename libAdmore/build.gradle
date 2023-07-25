@@ -39,15 +39,15 @@ dependencies {
     implementation "com.pangle.cn:mediation-baidu-adapter:9.29.1"//baidu adapter
     implementation "com.pangle.cn:mediation-gdt-adapter:4.530.1400.1" //gdt adapter
     implementation "com.pangle.cn:mediation-sigmob-adapter:4.11.0.1"//sigmob adapter
-
+    //admore-sdk
     api(name: 'AdMoreSdkLib-V1.0', ext: 'aar')
     //Baidu
     implementation(name: 'Baidu_MobAds_SDK_v9.29', ext: 'aar')
-//    //GDT 优量汇
+    //GDT 优量汇
     implementation(name: 'GDTSDK.unionNormal.4.530.1400', ext: 'aar')
-//    //ks 快手
+    //ks 快手
     implementation(name: 'kssdk-ad-3.3.44', ext: 'aar')
-//    //sigmob
+    //sigmob
     implementation(name: 'windAd-4.11.0', ext: 'aar')
     implementation(name: 'windAd-common-1.4.4', ext: 'aar')
 
