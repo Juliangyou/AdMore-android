@@ -43,7 +43,7 @@ dependencies {
     api(name: 'AdMoreSdkLib-V1.0', ext: 'aar')
     //Baidu
     implementation(name: 'Baidu_MobAds_SDK_v9.29', ext: 'aar')
-    //GDT 优量汇
+    //GDT 优量汇aa
     implementation(name: 'GDTSDK.unionNormal.4.530.1400', ext: 'aar')
     //ks 快手
     implementation(name: 'kssdk-ad-3.3.44', ext: 'aar')
