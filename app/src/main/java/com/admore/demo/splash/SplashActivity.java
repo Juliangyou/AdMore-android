@@ -77,11 +77,15 @@ public class SplashActivity extends BaseActivity {
             gotoMain();
             return;
         }
+        AdMoreMediationAdSlot.AdMoreMediationSplashRequestInfo splashInfo =
+                new AdMoreMediationAdSlot.AdMoreMediationSplashRequestInfo(AdMoreMediationAdSlot.ADN_PANGLE, "888355782", "5407100", "");
         IAdMoreNativeAd aNative = AdMoreSdk.getAdManager().createNative(this);
         IAdMoreSlot adMoreSlot = new AdMoreSlot.Builder()
-                .setCodeId("102325260")
+                .setCodeId("102381470")
                 .setMediationAdSlot(new AdMoreMediationAdSlot.Builder()
+                        .setAdMoreMediationSplashRequestInfo(splashInfo)
                         .build())
+                .setOrientation(AdMoreSlot.VERTICAL)
                 .setAdSize(new AdSize(UIUtils.getScreenWidth(this), UIUtils.getScreenHeight(this))).build();
         aNative.loadSplashAd(adMoreSlot, new AdMoreSplashAd.IAdMoreSplashCallBack() {
             @Override

@@ -12,7 +12,7 @@ import com.admore.demo.R;
 import com.admore.demo.util.UIUtils;
 import com.admore.sdk.AdMoreSdk;
 import com.admore.sdk.ads.AdMoreNativeAd;
-import com.admore.sdk.config.AdMoreDislike;
+import com.admore.sdk.config.AdMoreDislikeCallBack;
 import com.admore.sdk.config.AdMoreRenderListener;
 import com.admore.sdk.config.AdMoreSlot;
 import com.admore.sdk.config.AdSize;
@@ -117,22 +117,24 @@ public class FeedNativeActivity extends BaseActivity {
             @Override
             public void onRenderSuccess(View view, float var2, float var3, boolean var4) {
                 Log.d(TAG, "onRenderSuccess ");
-
                 if (nativeAd.getNativeAdManager().hasDislike()) {
-                    AdMoreDislike adMoreDislike = nativeAd.getAdMoreDislike(FeedNativeActivity.this);
-                    adMoreDislike.setAdMoreDislikeCallback(new AdMoreDislike.AdMoreDislikeCallback() {
+                    nativeAd.setDislikeCallBack(FeedNativeActivity.this, new AdMoreDislikeCallBack() {
                         @Override
                         public void onShow() {
+                            Log.d(TAG, "onShow ");
 
                         }
 
                         @Override
                         public void onSelected(int var1, String var2, boolean var3) {
+                            Log.d(TAG, "onSelected ");
+                            adMain.removeAllViews();
 
                         }
 
                         @Override
                         public void onCancel() {
+                            Log.d(TAG, "onCancel ");
 
                         }
                     });
