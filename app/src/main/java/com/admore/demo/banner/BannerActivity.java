@@ -52,7 +52,7 @@ public class BannerActivity extends BaseActivity {
         IAdMoreNativeAd aNative = AdMoreSdk.getAdManager().createNative(BannerActivity.this);
         IAdMoreSlot adMoreSlot = new AdMoreSlot.Builder()
                 .setAdCount(1)
-                .setCodeId("102361698")
+                .setCodeId("102383511")
                 .setAdSize(new AdSize(adMain.getWidth(), adMain.getHeight())).build();
         aNative.loadBannerExpressAd(adMoreSlot, new AdMoreBannerExpressAd.IAdMoreBannerCallBack() {
 

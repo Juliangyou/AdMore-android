@@ -59,7 +59,7 @@ public class FeedNativeActivity extends BaseActivity {
     private void loadAd() {
         IAdMoreSlot adMoreSlot = new AdMoreSlot.Builder()
                 .setAdCount(1)
-                .setCodeId("102361333")
+                .setCodeId("102383509")
                 .setAdSize(new AdSize(UIUtils.getScreenWidth(this), UIUtils.getScreenHeight(this))).build();
         adMoreNativeAd.loadNativeAd(adMoreSlot, new AdMoreNativeAd.IAdMoreNativeCallBack() {
             @Override

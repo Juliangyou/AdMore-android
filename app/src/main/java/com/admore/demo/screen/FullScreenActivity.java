@@ -48,7 +48,7 @@ public class FullScreenActivity extends BaseActivity {
         IAdMoreNativeAd aNative = AdMoreSdk.getAdManager().createNative(this);
         IAdMoreSlot adMoreSlot = new AdMoreSlot.Builder()
                 .setAdCount(1)
-                .setCodeId("102361045")
+                .setCodeId("102381848")
                 .setOrientation(AdMoreSlot.VERTICAL)
                 .setAdSize(new AdSize(adMain.getWidth(), adMain.getHeight())).build();
         aNative.loadScreenFullAd(adMoreSlot, new AdMoreFullScreenAd.AdMoreScreenFullAdVideoListener() {

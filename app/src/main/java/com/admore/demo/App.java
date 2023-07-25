@@ -14,7 +14,7 @@ public class App extends BaseApp {
     @Override
     public void onCreate() {
         super.onCreate();
-        SdMoreManager.init(this, "智慧城市", "5389812", new AdMoreSdk.InitCallBack() {
+        SdMoreManager.init(this, "智慧城市", "5407100", new AdMoreSdk.InitCallBack() {
             @Override
             public void success() {
                 adInit = true;

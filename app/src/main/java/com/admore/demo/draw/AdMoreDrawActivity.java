@@ -54,7 +54,7 @@ public class AdMoreDrawActivity extends BaseActivity {
         IAdMoreNativeAd aNative = AdMoreSdk.getAdManager().createNative(this);
         IAdMoreSlot adMoreSlot = new AdMoreSlot.Builder()
                 .setAdCount(1)
-                .setCodeId("102360464")
+                .setCodeId("102382334")
                 .setOrientation(AdMoreSlot.VERTICAL)
                 .setAdSize(new AdSize(adMain.getWidth(), adMain.getHeight())).build();
         aNative.loadDrawAd(adMoreSlot, new AdMoreDrawAd.AdMoreDrawLoadListener() {

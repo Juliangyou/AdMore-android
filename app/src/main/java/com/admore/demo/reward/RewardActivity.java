@@ -48,7 +48,7 @@ public class RewardActivity extends BaseActivity {
         IAdMoreNativeAd rewardVideoAd = AdMoreSdk.getAdManager().createNative(this);
         IAdMoreSlot adMoreSlot = new AdMoreSlot.Builder()
                 .setAdCount(1)
-                .setCodeId("102326387")
+                .setCodeId("102381957")
                 .setAdSize(new AdSize(UIUtils.getScreenWidth(this), UIUtils.getScreenHeight(this))).build();
         rewardVideoAd.loadRewardAd(adMoreSlot, new AdMoreRewardAd.IAdMoreRewardCallBack() {
             @Override
