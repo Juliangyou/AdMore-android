@@ -71,22 +71,22 @@ dependencies{
 
 ```gradle
 //admore  
-implementation "com.pangle.cn:mediation-sdk:5.3.5.1"//穿山甲
-implementation "com.pangle.cn:mediation-ks-adapter:3.3.44.1"//ks adapter
-implementation "com.pangle.cn:mediation-baidu-adapter:9.29.1"//baidu adapter
-implementation "com.pangle.cn:mediation-gdt-adapter:4.530.1400.1" //gdt adapter
-implementation "com.pangle.cn:mediation-sigmob-adapter:4.11.0.1"//sigmob adapter
+    implementation "com.pangle.cn:mediation-sdk:5.6.0.8"//穿山甲
+    implementation "com.pangle.cn:mediation-ks-adapter:3.3.51.1.1"//ks adapter
+    implementation "com.pangle.cn:mediation-baidu-adapter:9.313.2"//baidu adapter
+    implementation "com.pangle.cn:mediation-gdt-adapter:4.540.1410.2" //gdt adapter
+    implementation "com.pangle.cn:mediation-sigmob-adapter:4.12.6.1"//sigmob adapter
 
-api(name: 'AdMoreSdkLib-V1.0', ext: 'aar')
-//Baidu
-implementation(name: 'Baidu_MobAds_SDK_v9.29', ext: 'aar')
-//GDT 优量汇
-implementation(name: 'GDTSDK.unionNormal.4.530.1400', ext: 'aar')
-//ks 快手
-implementation(name: 'kssdk-ad-3.3.44', ext: 'aar')
-//sigmob
-implementation(name: 'windAd-4.11.0', ext: 'aar')
-implementation(name: 'windAd-common-1.4.4', ext: 'aar')
+api(name: 'AdMoreSdkLib-V1.0.2', ext: 'aar')
+//    //Baidu
+    implementation(name: 'Baidu_MobAds_SDK_v9.313', ext: 'aar')
+//    //GDT 优量汇
+    implementation(name: 'GDTSDK.unionNormal.4.540.1410', ext: 'aar')
+//    //ks 快手
+    implementation(name: 'kssdk-ad-3.3.51.1', ext: 'aar')
+//    //sigmob
+    implementation(name: 'windAd-4.12.6', ext: 'aar')
+    implementation(name: 'windAd-common-1.4.9', ext: 'aar')
 ```
 
 ```
@@ -771,7 +771,7 @@ SdMoreManager代码如下
        @Override
        public void onSplashAdLoad(AdMoreSplashAd ad) {
           splashAd = ad;
-          showBanner();
+          showSplash();
        }
     
        @Override
@@ -795,7 +795,7 @@ splashAd.setAdMoreInteractionListener(new AdMoreSplashAd.AdMoreInteractionListen
     }
 });
 //展示
-adMore.addView(splashAd.getView());
+        splashAd.showSplash(adMore);
 ```
 
 使用参考AdMoreDemo的 SplashActivity类
