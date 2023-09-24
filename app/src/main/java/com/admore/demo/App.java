@@ -18,12 +18,13 @@ public class App extends BaseApp {
             @Override
             public void success() {
                 adInit = true;
+                Log.d("App", "SdMoreManager.init success");
             }
 
             @Override
             public void fail(int i, String s) {
                 adInit = false;
-                Log.d("App", "adInitFailed" + s);
+                Log.d("App", "SdMoreManager.init adInitFailed" + s);
             }
         });
         MultiDex.install(this);

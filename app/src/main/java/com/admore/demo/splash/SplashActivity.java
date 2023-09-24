@@ -1,6 +1,5 @@
 package com.admore.demo.splash;
 
-import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,17 +20,13 @@ import com.admore.sdk.config.AdMoreSlot;
 import com.admore.sdk.config.AdSize;
 import com.admore.sdk.config.IAdMoreNativeAd;
 import com.admore.sdk.config.IAdMoreSlot;
-import com.tbruyelle.rxpermissions2.Permission;
-import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.zcy.base.ui.BaseActivity;
-
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 
 public class SplashActivity extends BaseActivity {
 
     private AdMoreSplashAd splashAd;
     private FrameLayout adMore;
+    private IAdMoreNativeAd adNative;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,7 +42,7 @@ public class SplashActivity extends BaseActivity {
     @Override
     public void initView() {
         adMore = findViewById(R.id.ad_main);
-        ((TextView)findViewById(R.id.tt)).setText("广告splash");
+        ((TextView) findViewById(R.id.tt)).setText("广告splash");
     }
 
     @Override
@@ -57,12 +52,13 @@ public class SplashActivity extends BaseActivity {
 
     private void startSplashAd() {
         if (!AdMoreSdk.init) {
+            Log.e(TAG, "AdMoreSdk.init = false");
             gotoMain();
             return;
         }
         AdMoreMediationAdSlot.AdMoreMediationSplashRequestInfo splashInfo =
                 new AdMoreMediationAdSlot.AdMoreMediationSplashRequestInfo(AdMoreMediationAdSlot.ADN_PANGLE, "888355782", "5407100", "");
-        IAdMoreNativeAd aNative = AdMoreSdk.getAdManager().createNative(this);
+        adNative = AdMoreSdk.getAdManager().createNative(this);
         IAdMoreSlot adMoreSlot = new AdMoreSlot.Builder()
                 .setCodeId("102381470")
                 .setMediationAdSlot(new AdMoreMediationAdSlot.Builder()
@@ -70,61 +66,49 @@ public class SplashActivity extends BaseActivity {
                         .build())
                 .setOrientation(AdMoreSlot.VERTICAL)
                 .setAdSize(new AdSize(UIUtils.getScreenWidth(this), UIUtils.getScreenHeight(this))).build();
-        aNative.loadSplashAd(adMoreSlot, new AdMoreSplashAd.IAdMoreSplashCallBack() {
+        adNative.loadSplashAd(adMoreSlot, new AdMoreSplashAd.IAdMoreSplashCallBack() {
             @Override
-            public void onError(int code, String message) {
+            public void onError(int i, String message) {
                 Log.d(TAG, "onError " + message);
                 Toast.makeText(getApplicationContext(), "广告加载失败！" + message, Toast.LENGTH_SHORT).show();
-
             }
 
             @Override
             public void onSplashAdLoad(AdMoreSplashAd ad) {
                 Log.d(TAG, "onSplashAdLoad ");
                 splashAd = ad;
-                showBanner();
+                showSplash();
             }
-
-            @Override
-            public void onTimeout() {
-                Log.d(TAG, "onTimeOut ");
-                Toast.makeText(getApplicationContext(), "广告加载超时！" , Toast.LENGTH_SHORT).show();
-                gotoMain();
-            }
-        });
-
-
+        }, 3000);
     }
 
-    private void showBanner() {
+    private void showSplash() {
         splashAd.setAdMoreInteractionListener(new AdMoreSplashAd.AdMoreInteractionListener() {
             @Override
-            public void onAdClicked(View var1, int var2) {
-                Log.d(TAG, "onAdClicked " + var1 + " " + var2);
+            public void onAdClicked() {
+                Log.d(TAG, "onAdClicked ");
 
             }
 
             @Override
-            public void onAdShow(View var1, int var2) {
-                Log.d(TAG, "onAdClicked " + var2);
-                Toast.makeText(getApplicationContext(), "广告加载成功 ！" , Toast.LENGTH_SHORT).show();
+            public void onAdShow() {
+                Toast.makeText(getApplicationContext(), "广告加载成功 ！", Toast.LENGTH_SHORT).show();
 
             }
 
             @Override
-            public void onAdSkip() {
-                Log.d(TAG, "onAdSkip ");
-                gotoMain();
-            }
-
-            @Override
-            public void onAdTimeOver() {
-                Log.d(TAG, "onAdTimeOver ");
+            public void onAdClose(int closeType) {
+                if (closeType == AdMoreSplashAd.CLICK_SKIP) {
+                    Log.d(TAG, "开屏广告点击跳过 ");
+                } else if (closeType == AdMoreSplashAd.COUNT_DOWN_OVER) {
+                    Log.d(TAG, "开屏广告点击倒计时结束");
+                } else if (closeType == AdMoreSplashAd.CLICK_JUMP) {
+                    Log.d(TAG, "点击跳转");
+                }
                 gotoMain();
             }
         });
-
-        adMore.addView(splashAd.getView());
+        splashAd.showSplash(adMore);
     }
 
     private void gotoMain() {

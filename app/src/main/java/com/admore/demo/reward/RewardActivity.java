@@ -76,7 +76,6 @@ public class RewardActivity extends BaseActivity {
                 mLoadSuccess = true;
                 rewardAd = ad;
                 showAd();
-                mLoadSuccess = false;
 
             }
         });
@@ -137,6 +136,7 @@ public class RewardActivity extends BaseActivity {
                     }
                 });
                 rewardAd.show(this);
+                rewardAd = null;
                 mLoadSuccess = false;
             } else {
                 Toast.makeText(getApplicationContext(), "当前广告不满足show的条件", Toast.LENGTH_SHORT).show();

@@ -9,7 +9,13 @@ import com.admore.sdk.config.IAdMoreConfig;
 
 public class SdMoreManager {
 
-
+    /**
+     * 初始化配置类
+     * 注：appId 需要替换成在媒体平台申请的appID ，切勿直接复制
+     * @param appName
+     * @param appId 注：需要替换成在媒体平台申请的appID ，切勿直接复制
+     * @return
+     */
     public static void init(Context context, String appName, String appId) {
         init(context,appName,appId,null);
     }
@@ -25,8 +31,9 @@ public class SdMoreManager {
 
     /**
      * 初始化配置类
-     * 更多配置参数请参考接入文档
-     *
+     * 注：appId 需要替换成在媒体平台申请的appID ，切勿直接复制
+     * @param name
+     * @param appId 注：需要替换成在媒体平台申请的appID ，切勿直接复制
      * @return
      */
     public static IAdMoreConfig buildV2Config(String name, String appId) {
